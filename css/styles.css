@@ -1,0 +1,33 @@
+/* ------------------- CSS reset ------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-wrap-style: pretty;
+}
+
+/* ------------------- Estilos generales ------------------- */
+* {
+    font-family: Railway, sans-serif;
+    text-decoration: none;
+    scrollbar-width: none;
+}
+
+body {
+    display: grid;
+    min-height: 100dvh;
+    background: linear-gradient(157deg, #a0b5eb, #c9f0e4);
+}
+
+h1 {
+    margin: .25em;
+    padding: .25em;
+    font-size: 2.25em;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+p {
+    text-align: center;
+    text-decoration: underline;
+}
