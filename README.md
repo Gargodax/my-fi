@@ -36,4 +36,8 @@ Si deseas contribuir a este proyecto, por favor, haz un fork del repositorio, cr
 
 Desarrollado por **Axel Garay Godoy**, estudiante del Curso React Js Flex en Coderhouse (2025).
 
+## Despliegue
 
+El proyecto está disponible en GitHub Pages. Puedes acceder a él a través del siguiente enlace:
+
+[Visita el sitio en GitHub Pages](https://gargodax.github.io/my-fi/)
