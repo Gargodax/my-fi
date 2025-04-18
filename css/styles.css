@@ -14,9 +14,12 @@
 }
 
 body {
-    display: grid;
     min-height: 100dvh;
     background: linear-gradient(157deg, #a0b5eb, #c9f0e4);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 1em;
+    justify-items: center;
 }
 
 h1 {
@@ -27,7 +30,81 @@ h1 {
     text-align: center;
 }
 
-p {
-    text-align: center;
+/* ------------------- Estilos main ------------------- */
+
+.box-container {
+    align-self: center;
+    justify-self: center;
+    width: 75%;
+    display: grid;
+    grid-template-columns: 40% auto;
+    grid-template-rows: repeat(9, 1fr);
+    gap: 1.5em;
+}
+
+.box {
+    padding: 1em;
+    border: solid black 2px;
+    border-radius: .75em;
+    filter: drop-shadow(.75em .5em .5em);
+    display: flex;
+    align-items: center;
+}
+
+.section-title {
+    font-size: 1.5em;
+    font-weight: bold;
     text-decoration: underline;
+    text-align: start;
+}
+
+.incomes {
+    background: linear-gradient(157deg, green, lightgreen);
+    grid-row: 1 / 5;
+    height: fit-content;
+    align-self: flex-start;
+}
+
+.logs {
+    background: linear-gradient(157deg, goldenrod, lightgoldenrodyellow);
+    grid-row: 1 / 9;
+    flex-direction: column;
+}
+
+.expenses {
+    background: linear-gradient(157deg, firebrick, lightcoral);
+    grid-row: 6 / 10;
+    height: fit-content;
+    align-self: flex-end;
+}
+
+.balance {
+    background: linear-gradient(157deg, darkslateblue, slateblue);
+    grid-row: 9/10;
+    justify-content: space-between;
+}
+
+.balance p {
+    color: aliceblue;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.balance-amount {
+    width: 30%;
+    text-align: end;
+    font-size: 1.5em;
+}
+
+.form-container {
+    width: 90%;
+    margin: 1em;
+    padding: .5em;
+    justify-self: self-end;
+}
+
+.entries,
+.bills {
+    display: flex;
+    flex-direction: column;
 }
