@@ -1,57 +1,86 @@
-// Función para agregar egresos
-function agregarEgreso() {
-    // Menú para seleccionar tipo de gasto (fijo, variable o eventual)
-    const tipoGasto = prompt("Seleccione el tipo de gasto:\n1. Gastos Fijos\n2. Gastos Variables\n3. Gastos Eventuales");
+document.addEventListener("DOMContentLoaded", () => {
+    const expenseForm = document.getElementById("bills");
+    const expenseTypeSelect = document.getElementById("expense-type");
+    const expenseCategorySelect = document.getElementById("expense-category");
+    const expenseDate = document.getElementById("expense-date");
+    const expenseAmount = document.getElementById("expense-amount");
+    const expenseDescription = document.getElementById("expense-description");
+    const addExpenseButton = document.getElementById("add-expenses-item");
 
-    let categoria = '';
+    const categories = {
+        "Fijo": ["Alquiler", "Servicios públicos", "Internet", "Seguros", "Transporte"],
+        "Variable": ["Comida", "Entretenimiento", "Ropa", "Salud", "Educación", "Ahorros"],
+        "Eventual": ["Viajes", "Regalos", "Mantenimiento"]
+    };
 
-    // Dependiendo del tipo de gasto, seleccionamos la categoría específica
-    switch (tipoGasto) {
-        case '1': // Gastos Fijos
-            categoria = prompt("Seleccione la categoría de gasto fijo:\n1. Alquiler\n2. Servicios Públicos\n3. Internet\n4. Seguro\n5. Transporte");
-            switch (categoria) {
-                case '1': categoria = 'Alquiler'; break;
-                case '2': categoria = 'Servicios Públicos'; break;
-                case '3': categoria = 'Internet'; break;
-                case '4': categoria = 'Seguro'; break;
-                case '5': categoria = 'Transporte'; break;
-                default: alert("Opción no válida."); return;
-            }
-            break;
-        case '2': // Gastos Variables
-            categoria = prompt("Seleccione la categoría de gasto variable:\n1. Comida\n2. Entretenimiento\n3. Ropa\n4. Salud\n5. Educación\n6. Ahorros");
-            switch (categoria) {
-                case '1': categoria = 'Comida'; break;
-                case '2': categoria = 'Entretenimiento'; break;
-                case '3': categoria = 'Ropa'; break;
-                case '4': categoria = 'Salud'; break;
-                case '5': categoria = 'Educación'; break;
-                case '6': categoria = 'Ahorros'; break;
-                default: alert("Opción no válida."); return;
-            }
-            break;
-        case '3': // Gastos Eventuales
-            categoria = prompt("Seleccione la categoría de gasto eventual:\n1. Viajes\n2. Regalos\n3. Mantenimiento");
-            switch (categoria) {
-                case '1': categoria = 'Viajes'; break;
-                case '2': categoria = 'Regalos'; break;
-                case '3': categoria = 'Mantenimiento'; break;
-                default: alert("Opción no válida."); return;
-            }
-            break;
-        default:
-            alert("Opción no válida.");
-            return;
+    function validateExpenseForm() {
+        const typeSelected = expenseTypeSelect.selectedIndex > 0;
+        const categorySelected = expenseCategorySelect.selectedIndex > 0;
+        const dateFilled = expenseDate.value.trim() !== "";
+        const amountFilled = expenseAmount.value.trim() !== "" && parseFloat(expenseAmount.value) > 0;
+
+        addExpenseButton.disabled = !(typeSelected && categorySelected && dateFilled && amountFilled);
     }
 
-    const monto = parseFloat(prompt("Ingrese el monto del egreso:"));
-    const fecha = prompt("Ingrese la fecha del egreso (Formato: DD/MM/AAAA)");
+    // Desactivar botón por defecto
+    addExpenseButton.disabled = true;
 
-    if (isNaN(monto)) {
-        alert("Por favor, ingrese un monto válido.");
-        return;
-    }
+    // Actualizar categorías cuando se selecciona tipo
+    expenseTypeSelect.addEventListener("change", () => {
+        expenseCategorySelect.innerHTML = "";
 
-    egresos.push({ categoria, monto, fecha });
-    alert(`Egreso registrado: ${monto} en la categoría ${categoria} el ${fecha}`);
-}
+        const defaultOption = document.createElement("option");
+        defaultOption.text = "Seleccionar";
+        defaultOption.disabled = true;
+        defaultOption.selected = true;
+        expenseCategorySelect.appendChild(defaultOption);
+
+        const selectedType = expenseTypeSelect.options[expenseTypeSelect.selectedIndex].text;
+
+        if (categories[selectedType]) {
+            categories[selectedType].forEach(cat => {
+                const option = document.createElement("option");
+                option.value = cat.toLowerCase();
+                option.textContent = cat;
+                expenseCategorySelect.appendChild(option);
+            });
+        }
+
+        validateExpenseForm(); // Revalidar formulario
+    });
+
+    // Escuchar cambios en campos
+    expenseCategorySelect.addEventListener("change", validateExpenseForm);
+    expenseDate.addEventListener("input", validateExpenseForm);
+    expenseAmount.addEventListener("input", validateExpenseForm);
+
+    // Click en botón "Cargar"
+    addExpenseButton.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const defaultOption = document.createElement("option");
+        defaultOption.text = "Seleccionar";
+        defaultOption.disabled = true;
+        defaultOption.selected = true;
+
+        // Agregar fila a la tabla de registros
+        addLogRow("expense", expenseDate.value, expenseTypeSelect.options[expenseTypeSelect.selectedIndex].text,
+            expenseCategorySelect.options[expenseCategorySelect.selectedIndex].text, expenseAmount.value, expenseDescription.value);
+
+        //Actualizar monto del balance
+        updateBalance(expenseAmount.value, 'expense');
+
+
+
+        // Limpiar campos
+        expenseTypeSelect.selectedIndex = 0;
+        expenseCategorySelect.innerHTML = ""; // Limpia categorías
+        expenseCategorySelect.appendChild(defaultOption); // Agregar opción por defecto ("Seleccionar")
+        expenseDate.value = "";
+        expenseAmount.value = "";
+        expenseDescription.value = "";
+
+        // Deshabilitar botón hasta que el formulario esté completo nuevamente
+        addExpenseButton.disabled = true;
+    });
+});

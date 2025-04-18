@@ -1,27 +1,27 @@
-// Función para calcular el balance
-function calcularBalance() {
-    const totalIngresos = ingresos.reduce((total, ingreso) => total + ingreso.monto, 0);
-    const totalEgresos = egresos.reduce((total, egreso) => total + egreso.monto, 0);
-    const balance = totalIngresos - totalEgresos;
+let currentBalance = 0;
 
-    alert(`Total Ingresos: ${totalIngresos}\nTotal Egresos: ${totalEgresos}\nBalance: ${balance}`);
+// Cargar balance inicial desde localStorage
+const savedBalance = localStorage.getItem('balance');
+if (savedBalance !== null) {
+    currentBalance = parseFloat(savedBalance);
+    document.getElementById('balance-amount').textContent = `$${currentBalance.toFixed(2)}`;
 }
 
-// Función para mostrar todos los ingresos y egresos
-function mostrarRegistros() {
-    let registros = "";
+function updateBalance(amount, type) {
+    const balanceElement = document.getElementById('balance-amount');
+    const numericAmount = parseFloat(amount);
 
-    // Mostrar ingresos
-    registros += "Ingresos:\n";
-    ingresos.forEach(ingreso => {
-        registros += `${ingreso.categoria}: ${ingreso.monto} el ${ingreso.fecha}\n`;
-    });
+    if (isNaN(numericAmount)) return;
 
-    // Mostrar egresos
-    registros += "\nEgresos:\n";
-    egresos.forEach(egreso => {
-        registros += `${egreso.categoria}: ${egreso.monto} el ${egreso.fecha}\n`;
-    });
+    if (type === 'income') {
+        currentBalance += numericAmount;
+    } else if (type === 'expense') {
+        currentBalance -= numericAmount;
+    }
 
-    alert(registros);
+    // Mostrar en pantalla
+    balanceElement.textContent = `$${currentBalance.toFixed(2)}`;
+
+    // Guardar en localStorage
+    localStorage.setItem('balance', currentBalance.toFixed(2));
 }
