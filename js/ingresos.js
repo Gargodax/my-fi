@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
 
         // Agregar fila a la tabla de registros
-        addLogRow("income", incomeDate.value, incomeTypeSelect.options[incomeTypeSelect.selectedIndex].text,
+        addNewLog("income", incomeDate.value, incomeTypeSelect.options[incomeTypeSelect.selectedIndex].text,
             "-", incomeAmount.value, incomeDescription.value);
 
         // Actualizar monto del balance

@@ -1,6 +1,6 @@
 let currentBalance = 0;
 
-// Cargar balance inicial desde localStorage
+// Función para cargar balance inicial desde localStorage
 const savedBalance = localStorage.getItem('balance');
 if (savedBalance !== null) {
     currentBalance = parseFloat(savedBalance);
