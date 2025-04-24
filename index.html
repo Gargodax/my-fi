@@ -18,27 +18,39 @@
     </header>
     <main class="box-container">
         <section class="box incomes">
-            <p class="section-title">Ingresos</p>
+
+            <span class="title-container">
+                <p class="section-title">Ingresos</p>
+            </span>
+
             <span class="form-container">
                 <form action="" class="entries" id="entries">
 
-                    <label for="income-type">Tipo de ingreso*:</label>
-                    <select id="income-type">
-                        <option selected="true" disabled="disabled">Seleccionar</option>
-                        <option value="">Sueldo</option>
-                        <option value="">Freelance</option>
-                        <option value="">Inversiones</option>
-                        <option value="">Otros</option>
-                    </select>
+                    <div>
+                        <label for="income-date">Fecha*:</label>
+                        <input type="date" id="income-date">
+                    </div>
 
-                    <label for="income-date">Fecha*:</label>
-                    <input type="date" id="income-date">
+                    <div>
+                        <label for="income-type">Tipo de ingreso*:</label>
+                        <select id="income-type">
+                            <option selected="true" disabled="disabled">Seleccionar</option>
+                            <option value="">Sueldo</option>
+                            <option value="">Freelance</option>
+                            <option value="">Inversiones</option>
+                            <option value="">Otros</option>
+                        </select>
+                    </div>
 
-                    <label for="income-amount">Monto*:</label>
-                    <input type="number" step="0.01" min="0" id="income-amount">
+                    <div>
+                        <label for="income-amount">Monto*:</label>
+                        <input type="number" step="0.01" min="0" id="income-amount">
+                    </div>
 
-                    <label for="income-description">Descripción:</label>
-                    <input type="text" maxlength="100" id="income-description">
+                    <div>
+                        <label for="income-description">Descripción:</label>
+                        <textarea rows="2" id="income-description"></textarea>
+                    </div>
 
                     <button id="add-income-item">Cargar</button>
                 </form>
@@ -46,17 +58,21 @@
         </section>
 
         <section class="box logs">
-            <p class="section-title">Registros</p>
+
+            <span class="title-container">
+                <p class="section-title">Registros</p>
+            </span>
+
             <div class="table-container">
                 <!-- Encabezado de la tabla -->
                 <table class="table-headers">
                     <colgroup>
-                        <col style="width: 5%;">
-                        <col style="width: 15%;">
-                        <col style="width: 15%;">
-                        <col style="width: 15%;">
-                        <col style="width: 20%;">
-                        <col style="width: 30%;">
+                        <col class="col-width-1">
+                        <col class="col-width-2">
+                        <col class="col-width-3">
+                        <col class="col-width-4">
+                        <col class="col-width-5">
+                        <col class="col-width-6">
                     </colgroup>
                     <thead class="log-table-header" id="log-table-header">
                         <tr>
@@ -73,12 +89,12 @@
                 <div class="table-content">
                     <table class="table-body">
                         <colgroup>
-                            <col style="width: 5%;">
-                            <col style="width: 15%;">
-                            <col style="width: 15%;">
-                            <col style="width: 15%;">
-                            <col style="width: 20%;">
-                            <col style="width: 30%;">
+                            <col class="col-width-1">
+                            <col class="col-width-2">
+                            <col class="col-width-3">
+                            <col class="col-width-4">
+                            <col class="col-width-5">
+                            <col class="col-width-6">
                         </colgroup>
                         <tbody class="log-entries" id="log-entries">
                             <!-- Filas agregadas de forma dinámica -->
@@ -90,32 +106,46 @@
         </section>
 
         <section class="box expenses">
-            <p class="section-title">Egresos</p>
+
+            <span class="title-container">
+                <p class="section-title">Egresos</p>
+            </span>
+
             <span class="form-container">
                 <form action="" class="bills" id="bills">
 
-                    <label for="expense-type">Tipo de gasto*:</label>
-                    <select id="expense-type">
-                        <option selected="true" disabled="disabled">Seleccionar</option>
-                        <option value="">Fijo</option>
-                        <option value="">Variable</option>
-                        <option value="">Eventual</option>
-                    </select>
+                    <div>
+                        <label for="expense-date">Fecha*</label>
+                        <input type="date" id="expense-date">
+                    </div>
 
-                    <label for="expense-category">Categoría*:</label>
-                    <select id="expense-category">
-                        <option selected="true" disabled="disabled">Seleccionar</option>
-                        <!-- Opciones agregadas de forma dinámica -->
-                    </select>
+                    <div>
+                        <label for="expense-type">Tipo de gasto*:</label>
+                        <select id="expense-type">
+                            <option selected="true" disabled="disabled">Seleccionar</option>
+                            <option value="">Fijo</option>
+                            <option value="">Variable</option>
+                            <option value="">Eventual</option>
+                        </select>
+                    </div>
 
-                    <label for="expense-date">Fecha=*</label>
-                    <input type="date" id="expense-date">
+                    <div>
+                        <label for="expense-category">Categoría*:</label>
+                        <select id="expense-category">
+                            <option selected="true" disabled="disabled">Seleccionar</option>
+                            <!-- Opciones agregadas de forma dinámica -->
+                        </select>
+                    </div>
 
-                    <label for="expense-amount">Monto*:</label>
-                    <input type="number" step="0.01" min="0" id="expense-amount">
+                    <div>
+                        <label for="expense-amount">Monto*:</label>
+                        <input type="number" step="0.01" min="0" id="expense-amount">
+                    </div>
 
-                    <label for="expense-description">Descripción:</label>
-                    <input type="text" maxlength="100" id="expense-description">
+                    <div>
+                        <label for="expense-description">Descripción:</label>
+                        <textarea rows="2" id="expense-description"></textarea>
+                    </div>
 
                     <button disabled id="add-expenses-item">Cargar</button>
                 </form>
@@ -123,8 +153,14 @@
         </section>
 
         <section class="box balance">
-            <p class="section-title">Balance:</p>
-            <p class="balance-amount" id="balance-amount">$0.00</p>
+
+            <span class="title-container">
+                <p class="section-title">Balance:</p>
+            </span>
+
+            <span class="amount-container">
+                <p class="balance-amount" id="balance-amount">$0.00</p>
+            </span>
         </section>
 
     </main>

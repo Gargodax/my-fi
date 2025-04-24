@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
         defaultOption.selected = true;
 
         // Agregar fila a la tabla de registros
-        addLogRow("expense", expenseDate.value, expenseTypeSelect.options[expenseTypeSelect.selectedIndex].text,
+        addNewLog("expense", expenseDate.value, expenseTypeSelect.options[expenseTypeSelect.selectedIndex].text,
             expenseCategorySelect.options[expenseCategorySelect.selectedIndex].text, expenseAmount.value, expenseDescription.value);
 
         //Actualizar monto del balance
