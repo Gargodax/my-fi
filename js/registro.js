@@ -41,10 +41,9 @@ function addLogRow(i_e, date, type, category, amount, description) {
     const deleteCell = document.createElement('td');
     const deleteContainer = document.createElement('div');
     const deleteIcon = document.createElement('img');
-    deleteIcon.src = './assets/icons/trashcan.svg';
+    deleteIcon.src = '../assets/icons/trashcan.svg';
     deleteIcon.setAttribute('alt', 'Eliminar');
     deleteIcon.classList.add('delete-icon');
-
     deleteIcon.addEventListener('click', () => {
 
         // Notificación Toastify
