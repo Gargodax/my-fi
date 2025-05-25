@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <title>Control de gastos</title>
 </head>
 
@@ -35,10 +36,6 @@
                         <label for="income-type">Tipo de ingreso*:</label>
                         <select id="income-type">
                             <option selected="true" disabled="disabled">Seleccionar</option>
-                            <option value="">Sueldo</option>
-                            <option value="">Freelance</option>
-                            <option value="">Inversiones</option>
-                            <option value="">Otros</option>
                         </select>
                     </div>
 
@@ -95,6 +92,7 @@
                             <col class="col-width-4">
                             <col class="col-width-5">
                             <col class="col-width-6">
+                            <col class="col-width-7">
                         </colgroup>
                         <tbody class="log-entries" id="log-entries">
                             <!-- Filas agregadas de forma dinámica -->
@@ -123,9 +121,7 @@
                         <label for="expense-type">Tipo de gasto*:</label>
                         <select id="expense-type">
                             <option selected="true" disabled="disabled">Seleccionar</option>
-                            <option value="">Fijo</option>
-                            <option value="">Variable</option>
-                            <option value="">Eventual</option>
+
                         </select>
                     </div>
 
@@ -147,7 +143,7 @@
                         <textarea rows="2" id="expense-description"></textarea>
                     </div>
 
-                    <button disabled id="add-expenses-item">Cargar</button>
+                    <button id="add-expenses-item">Cargar</button>
                 </form>
             </span>
         </section>
@@ -174,7 +170,7 @@
     <script src="js/registro.js"></script>
     <script src="js/balance.js"></script>
     <script src="js/main.js"></script>
-
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </body>
 
 </html>

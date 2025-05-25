@@ -1,11 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const expenseForm = document.getElementById("bills");
-    const expenseTypeSelect = document.getElementById("expense-type");
-    const expenseCategorySelect = document.getElementById("expense-category");
-    const expenseDate = document.getElementById("expense-date");
-    const expenseAmount = document.getElementById("expense-amount");
-    const expenseDescription = document.getElementById("expense-description");
-    const addExpenseButton = document.getElementById("add-expenses-item");
+    const expenseTypeSelect = document.querySelector('#expense-type');
+    const expenseCategorySelect = document.querySelector('#expense-category');
+    const expenseDate = document.querySelector('#expense-date');
+    const expenseAmount = document.querySelector('#expense-amount');
+    const expenseDescription = document.querySelector('#expense-description');
+    const addExpenseButton = document.querySelector('#add-expenses-item');
 
     const categories = {
         "Fijo": ["Alquiler", "Servicios públicos", "Internet", "Seguros", "Transporte"],
@@ -67,10 +66,30 @@ document.addEventListener("DOMContentLoaded", () => {
         addNewLog("expense", expenseDate.value, expenseTypeSelect.options[expenseTypeSelect.selectedIndex].text,
             expenseCategorySelect.options[expenseCategorySelect.selectedIndex].text, expenseAmount.value, expenseDescription.value);
 
+        // Notificación Toastify
+        Toastify({
+            text: `${"Egreso agregado correctamente"}
+            Tipo: ${expenseTypeSelect.options[expenseTypeSelect.selectedIndex].text}
+            Categoría: ${expenseCategorySelect.options[expenseCategorySelect.selectedIndex].text}
+            Fecha: ${expenseDate.value}`,
+            duration: 6000,
+            close: false,
+            gravity: "top", // `top` or `bottom`
+            position: "center", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+                background: "linear-gradient(225deg, lightcoral 20%, red 70%, darkred 90%)",
+                border: "1px solid whitesmoke",
+                borderRadius: ".5em",
+                padding: "1em",
+                color: "whitesmoke",
+                fontWeight: "600",
+                textAlign: "center"
+            },
+        }).showToast();
+
         //Actualizar monto del balance
         updateBalance(expenseAmount.value, 'expense');
-
-
 
         // Limpiar campos
         expenseTypeSelect.selectedIndex = 0;
