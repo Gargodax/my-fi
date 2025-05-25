@@ -1,0 +1,39 @@
+{
+    "incomeTypes": [
+        "Sueldo",
+        "Freelance",
+        "Inversiones",
+        "Otros"
+    ],
+    "expenseTypes": [
+        {
+            "type": "Fijo",
+            "categories": [
+                "Alquileres",
+                "Servicios públicos",
+                "Internet",
+                "Seguros",
+                "Transporte"
+            ]
+        },
+        {
+            "type": "Variable",
+            "categories": [
+                "Alimentos",
+                "Entretenimiento",
+                "Vestimenta",
+                "Salud",
+                "Educación",
+                "Ahorros"
+            ]
+        },
+        {
+            "type": "Eventual",
+            "categories": [
+                "Viajes",
+                "Regalos",
+                "Mantenimiento"
+            ]
+        }
+    ]
+}
