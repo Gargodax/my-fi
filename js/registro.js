@@ -1,3 +1,18 @@
+// Función para guardar los registros en localStorage
+function saveLogToLocalStorage(logEntries) {
+    localStorage.setItem('logEntries', JSON.stringify(logEntries));
+}
+
+// Función para cargar los registros desde localStorage
+function loadLogFromLocalStorage() {
+    const savedLogs = localStorage.getItem('logEntries');
+    return savedLogs ? JSON.parse(savedLogs) : [];
+}
+
+// Función para agregar un nuevo registro al log
+let logEntriesArray = loadLogFromLocalStorage();
+
+// Función para agregar una fila a la tabla
 function addLogRow(i_e, date, type, category, amount, description) {
     const logEntries = document.getElementById('log-entries');
 
@@ -33,4 +48,29 @@ function addLogRow(i_e, date, type, category, amount, description) {
 
     // Insertar fila en la tabla
     logEntries.appendChild(row);
+}
+
+// Función para cargar los registros al cargar la página
+document.addEventListener("DOMContentLoaded", () => {
+    // Limpiar la tabla antes de cargar los registros
+    const logEntriesTable = document.getElementById('log-entries');
+    logEntriesTable.innerHTML = ""; // Limpiamos la tabla
+
+    // Cargar los registros guardados en localStorage y mostrarlos
+    logEntriesArray.forEach(entry => {
+        addLogRow(entry.i_e, entry.date, entry.type, entry.category, entry.amount, entry.description);
+    });
+});
+
+// Función para manejar la adición de un nuevo registro
+function addNewLog(i_e, date, type, category, amount, description) {
+    // Agregar el nuevo registro al array
+    const newLog = { i_e, date, type, category, amount, description };
+    logEntriesArray.push(newLog);
+
+    // Guardar los registros en localStorage
+    saveLogToLocalStorage(logEntriesArray);
+
+    // Agregar el nuevo registro a la tabla
+    addLogRow(i_e, date, type, category, amount, description);
 }
