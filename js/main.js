@@ -2,7 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', function () {
     // Cargar el archivo JSON con los datos de los tipos de ingreso, egreso y categorías
-    fetch('../options.JSON')
+    fetch('../options.json')
         .then(response => response.json())
         .then(data => {
             // Llenar las opciones de ingresos
