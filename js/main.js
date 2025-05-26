@@ -48,6 +48,28 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
         })
-        .catch(error => console.error('Error cargando el archivo JSON:', error));
+        .catch(error => {
+            // Notificación Toastify
+            Toastify({
+                text: `¡Ups! 😵‍💫
+                    Ocurrió un error al cargar las opciones
+                    
+                    Intenta recargar la página`,
+                duration: 9000,
+                close: false,
+                gravity: "bottom", // `top` or `bottom`
+                position: "right", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: {
+                    background: "beige",
+                    border: "1px solid black",
+                    borderRadius: "0.25em",
+                    padding: "1em",
+                    color: "black",
+                    fontWeight: "600",
+                    textAlign: "center"
+                },
+            }).showToast();
+        });
 });
 

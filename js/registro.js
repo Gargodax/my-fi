@@ -57,7 +57,7 @@ function addLogRow(i_e, date, type, category, amount, description) {
             position: "center", // `left`, `center` or `right`
             stopOnFocus: true, // Prevents dismissing of toast on hover
             style: {
-                background: "linear-gradient(225deg, lightcoral 20%, red 70%, darkred 90%)",
+                background: "linear-gradient(225deg, purple 20%, mediumpurple 70%, rebeccapurple 90%)",
                 border: "1px solid whitesmoke",
                 borderRadius: ".5em",
                 padding: "1em",
